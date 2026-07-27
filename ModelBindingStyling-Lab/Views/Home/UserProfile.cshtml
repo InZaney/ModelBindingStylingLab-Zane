@@ -1,59 +1,39 @@
 ﻿@model UserProfile
 
 @{
-    ViewData["Title"] = "J. Doe profile page";
+    ViewData["Title"] = @Model.FullName + " profile page";
 }
 
 <h1>Profile Page</h1>
 
-<div>
-    <h4>UserProfile</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserProfileId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.UserProfileId
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.FullName
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.Email
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.PhoneNumber
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.ImageUrl
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GitHubUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Model.GitHubUrl
-        </dd>
-        <dt>Skilled Languages</dt>
-        <dd>
-            <ul>
-                @foreach(string languageSkill in Model.SkilledLanguages)
-                {
-                    <li>@languageSkill</li>
-                }
-            </ul>
-        </dd>
-    </dl>
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@Model.ImageUrl" class="img-fluid rounded-circle" style="width:200px; height:200px; object-fit:cover" alt="@Model.FullName 's Profile Photo">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h2 class="card-title">@Model.FullName</h2>
+                <p class="card-text">
+                    <strong>UserProfileID:</strong> @Model.UserProfileId <br />
+                    <strong>Email Address:</strong> <a href="@Model.Email">@Model.Email</a> <br />
+                    <strong>Phone Number:</strong> @Model.PhoneNumber <br />
+                    <strong>GitHub URL:</strong> <a href="@Model.GitHubUrl">@Model.GitHubUrl</a> <br />
+                    <div class="d-flex align-items-center gap-3">
+                        <strong>Skilled Languages:</strong>
+
+                        <div class="d-flex gap-2">
+                        <ul class="list-group list-group-horizontal">
+                            @foreach (string languageSkill in Model.SkilledLanguages)
+                            {
+                                <li class="badge list-group-item rounded-pill text-bg-primary">@languageSkill</li>
+                            }
+                        </ul>
+                        </div>
+                    </div>
+
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
